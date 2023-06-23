@@ -53,13 +53,13 @@ if __name__ == "__main__":
         pixelImages.append(image.load())
 
     anomalies = []
-
-    for y in range(height):
+    for y in range(height - 1, -1, -1):
+        y = height - y - 1
         for x in range(width):
             pixelRows = []
             pixelDimension = []
             for pixel in range(len(pixelImages)):
-                r, g, b = pixelImages[pixel][x, y]
+                r, g, b = pixelImages[pixel][x, height - y - 1]
 
                 pixelRows.append(f'#{r:02x}{g:02x}{b:02x}')
                 pixelDimension.append((pixel+1, x, y))
@@ -69,12 +69,13 @@ if __name__ == "__main__":
             if majority != 'none':
                 for pixel in range(len(pixelRows)):
                     if pixelRows[pixel] != majority:
-                        anomalies.append(pixelDimension[pixel])
+                        die, x, y = pixelDimension[pixel]
+                        anomalies.append([die, x, y])
             else:
                 for pixel in range(len(pixelRows)):
                     anomalies.append(pixelDimension[pixel])
 
-    with open('output.csv', 'w', newline='') as f:
+    with open('levelOneOutput.csv', 'w', newline='') as f:
         writer = csv.writer(f)
 
         for anomaly in anomalies:
