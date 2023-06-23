@@ -53,7 +53,7 @@ if __name__ == "__main__":
         pixelImages.append(image.load())
 
     anomalies = []
-    for y in range(height - 1, -1, -1):
+    for y in range(height-1, -1, -1):
         y = height - y - 1
         for x in range(width):
             pixelRows = []
