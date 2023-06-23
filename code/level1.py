@@ -30,11 +30,8 @@ if __name__ == "__main__":
 
 
     die = data['die']
-
     streetWidth = data['street_width']
-
     careAreaDimentions = data['care_areas']
-
     exclusionZones = data['exclusion_zones']
 
 
